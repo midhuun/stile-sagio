@@ -4,6 +4,7 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "./components/headerFooter/header";
 import Whatsappmsg from "./components/whatsappmsg";
+import HeaderProvider from './context/HeaderContext';
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,9 +33,11 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} antialiased`}
       >
+      <HeaderProvider>
         <Header />
         <Whatsappmsg />
         {children}
+        </HeaderProvider>
       </body>
     </html>
   );

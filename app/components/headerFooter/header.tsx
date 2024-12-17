@@ -1,5 +1,5 @@
 'use client';
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 import { IoCloseOutline } from "react-icons/io5";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
@@ -9,10 +9,11 @@ import { FiUser } from "react-icons/fi";
 import { LiaUser } from "react-icons/lia";
 import Link from "next/link";
 import Login from "../login/login";
+import { HeaderContext } from "@/app/context/HeaderContext";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [openLogin,setopenLogin] = useState(false);
+  const {isUserOpen,setisUserOpen} = useContext<any>(HeaderContext)
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -20,7 +21,7 @@ export default function Header() {
   return (
     <div className="fixed bg-white top-0 w-full z-[200]">
     <header className=" border-b flex  shadow-sm px-3">
-        <Login isOpen={openLogin} />
+        <Login  />
         <nav className="uppercase w-full">
             <div className="flex text-[12px] md:text-xs  items-center py-4">
                 <ul className="hidden md:flex w-full justify-center items-center space-x-4">
@@ -35,7 +36,7 @@ export default function Header() {
         <div className="flex items-center justify-end space-x-2">
             <button><CiSearch size={26} /></button>
             <button><CiHeart size={26} /> </button>
-            <button><LiaUser onClick={()=>setopenLogin(!openLogin)} size={26} /></button>
+            <button><LiaUser onClick={()=>setisUserOpen(true)} size={26} /></button>
             <button><PiShoppingBagLight size={26} /></button>
         </div>
          </header>

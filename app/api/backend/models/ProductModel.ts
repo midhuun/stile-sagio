@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import validator from 'validator';
 const CategorySchema = new Schema({
       name:{
@@ -10,7 +10,7 @@ const CategorySchema = new Schema({
       startingPrice:{
           type:Number,required:true},
       image:{type:String,
-          validate:(value)=>{
+          validate:(value:any)=>{
             if(!validator.isURL(value)){
               throw new Error("Image url is not valid")
             }
@@ -49,7 +49,7 @@ const CategorySchema = new Schema({
         ],
         image: {
           type: String,
-          validate: (value) => {
+          validate: (value:any) => {
             if (!validator.isURL(value)) {
               throw new Error("Image URL is not valid");
             }
@@ -70,7 +70,7 @@ const CategorySchema = new Schema({
          }
          
         }
-     catch(err){
+     catch(err:any){
       next(err);
      }
   })
@@ -127,7 +127,7 @@ const CategorySchema = new Schema({
       images: [
         {
           type: String,
-          validate: (value) => {
+          validate: (value:any) => {
             if (!validator.isURL(value)) {
               throw new Error("Image URL is not valid");
             }
@@ -156,7 +156,7 @@ const CategorySchema = new Schema({
         }
         next();
        }
-    catch(err){
+    catch(err:any){
      next(err);
     }
  })
